@@ -52,7 +52,7 @@ def call(List<String> paramsAllowedStage){
 			figlet STAGE_REST
 			STAGE=env.STAGE_NAME
 			println "Stage: ${env.STAGE_NAME}"
-            		sh "curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"
+            		sh "curl -X GET 'http://localhost:8085/rest/mscovid/test?msg=testing'"
 		}
 			
 	}
