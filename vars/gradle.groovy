@@ -1,9 +1,9 @@
 def call(){
 
 	
-		stage(STAGE_BUILD)
+		stage('build')
 		{
-			figlet STAGE_BUILD
+			figlet 'build'
 			STAGE=env.STAGE_NAME
 			sh 'env'
             		sh './gradlew clean build'
@@ -11,8 +11,8 @@ def call(){
 					
 		}
 		
-		stage(STAGE_SONAR){
-			figlet STAGE_SONAR	
+		stage('sonar'){
+			figlet 'sonar'	
 			STAGE=env.STAGE_NAME
 			def scannerHome = tool 'sonar-scanner';
 			withSonarQubeEnv('sonar-server') {
@@ -21,8 +21,8 @@ def call(){
          	}
 	
 	
-		stage(STAGE_RUN){
-			figlet STAGE_RUN
+		stage('run'){
+			figlet 'run'
 			STAGE=env.STAGE_NAME
 			println "Stage: ${env.STAGE_NAME}"
             		sh "nohup bash gradlew bootRun & "
@@ -31,8 +31,8 @@ def call(){
 						
 	
 	
-		stage(STAGE_REST){
-			figlet STAGE_REST
+		stage('rest'){
+			figlet 'rest'
 			STAGE=env.STAGE_NAME
 			println "Stage: ${env.STAGE_NAME}"
             		sh "curl -X GET 'http://localhost:8085/rest/mscovid/test?msg=testing'"
@@ -40,8 +40,8 @@ def call(){
 			
 	
 	
-		stage(STAGE_NEXUSCI) {
-			figlet STAGE_NEXUSCI
+		stage('nexusci') {
+			figlet 'nexusci'
 			STAGE=env.STAGE_NAME
 			nexusPublisher nexusInstanceId: 'test-repo',
 				nexusRepositoryId: 'test-repo',
@@ -62,16 +62,16 @@ def call(){
 		}
 	
 	
-		stage(STAGE_DOWNLOADNEXUS) {
-			figlet STAGE_DOWNLOADNEXUS
+		stage('downloadnexus') {
+			figlet 'downloadnexus'
 			sh "curl -X GET -u admin:L1m1t2rm., http://localhost:8081/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O"		
 			
 			
 		}
 	
 	
-		stage(STAGE_RUNDOWNLOADEDJAR) {
-			figlet STAGE_RUNDOWNLOADEDJAR
+		stage('rundownloadjar') {
+			figlet 'rundownloadjar'
 			sh "nohup java -jar DevOpsUsach2020-0.0.1.jar &"
 			sleep 60
 			
@@ -79,8 +79,8 @@ def call(){
 	
 	
 	
-		stage(STAGE_NEXUSCD) {
-			figlet STAGE_NEXUSCD
+		stage('nexuscd') {
+			figlet 'nexuscd'
 					
 			STAGE=env.STAGE_NAME
 			nexusPublisher nexusInstanceId: 'test-repo',
