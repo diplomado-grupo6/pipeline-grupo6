@@ -20,11 +20,11 @@ pipeline {
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
                       println "antes de gradle"
-                      gradle()
-                      //def ejecucionGradle = load '/vars/gradle.groovy'
-                      //ejecucionGradle.call()
+                      (stage, pipeline)=gradle.call()
+                      STAGE=stage
+                      PIPELINE=pipeline
                     
-                    println "pipeline:"
+                    
                      
                       
                   } else {
