@@ -14,12 +14,7 @@ pipeline {
 
         stages{
           stage('Pipeline'){
-            
-        environment {
-            STAGEMP = ''
-            PIPELINEMP=''
-        }
-            
+                              
             steps{
               script{
                                
@@ -28,13 +23,8 @@ pipeline {
                       println "antes de gradle"
                       gradle.call()
                       println "despues de gradle"
-                      //println "despues de gradle:"+STAGE
-                      /*def variables = sh (
-                        script: 'env',
-                        returnStdout: true
-                      ).trim()           
-                      println variables*/
-                      println "prueba mp ${STAGEMP}"
+                                          
+                      println "prueba mp ${STAGE}"
                      
                       
                   } else {
@@ -57,7 +47,8 @@ pipeline {
           failure {
             //[${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]
             //slackSend color: 'danger', message: "[Grupo6][Rama: ${env.GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]"
-            error "Ejecución fallida"
+            //error "Ejecución fallida"
+            figlet 'error'
           }
         }
         
