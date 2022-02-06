@@ -40,11 +40,13 @@ pipeline {
         post {
           success {
             //figlet 'pipeline:'+ PIPELINE
-            slackSend color: 'good', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
+            //[${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]
+            slackSend color: 'good', message: "[Grupo6]"
           }
 
           failure {
-            slackSend color: 'danger', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]"
+            //[${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]
+            slackSend color: 'danger', message: "[Grupo6]"
             error "Ejecución fallida en stage ${STAGE}"
           }
         }
