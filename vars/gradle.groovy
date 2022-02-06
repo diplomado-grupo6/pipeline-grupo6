@@ -1,7 +1,7 @@
 def call(){
 
         if(isIcOrRelease()=='CI'){
-        PIPELINE='CI'
+        env.PIPELINE='CI'
         figlet 'CI'
         stage('compile-unitTest-jar') {
             STAGE=env.STAGE_NAME
