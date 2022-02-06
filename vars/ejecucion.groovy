@@ -18,8 +18,7 @@ pipeline {
               script{
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      def ejecucionGradle = load 'gradle.groovy'
-                      ejecucionGradle.call()
+                      gradle.call()
                   } else {
                       maven()
                   }
