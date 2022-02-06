@@ -4,8 +4,8 @@ pipeline {
         agent any
 
         environment {
-            STAGE='z'
-            PIPELINE=''
+            STAGE=' '
+            PIPELINE=' '
         }
 
         parameters {
@@ -20,12 +20,14 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                    figlet "a ${env.STAGE}"
-                    figlet "a ${STAGE}"
+                    //figlet "a ${env.STAGE}"
+                     figlet "a ${STAGE}"
+                    figlet "a ${PIPELINE}"
                       gradle.call()
                       println "despues de gradle"
                     
                       figlet "b ${STAGE}"
+                      figlet "b ${PIPELINE}"
                     
                       
                   } else {
