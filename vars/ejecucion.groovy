@@ -20,7 +20,7 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      println "antes de gradle"
+                      println "antes de gradle ${STAGE}"
                       gradle.call()
                       println "despues de gradle"
                                           
