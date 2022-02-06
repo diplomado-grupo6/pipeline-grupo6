@@ -24,8 +24,8 @@ pipeline {
                       //def ejecucionGradle = load '/vars/gradle.groovy'
                       //ejecucionGradle.call()
                     
-                      figlet 'pipeline:'+pipe
-                      PIPELINE=pipe
+                      figlet 'pipeline:'+PIPELINE
+                     
                       
                   } else {
                       maven()
