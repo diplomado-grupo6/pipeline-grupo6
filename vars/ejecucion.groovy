@@ -20,12 +20,12 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      println "antes de gradle ${STAGE}"
+                      figlet STAGE
                       gradle.call()
                       println "despues de gradle"
-                                          
-                      println "prueba mp ${STAGE}"
-                     
+                    
+                      figlet STAGE
+                    
                       
                   } else {
                       maven()
