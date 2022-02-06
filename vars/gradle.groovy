@@ -95,6 +95,8 @@ def call(){
     
      
 }
+return this;
+
 
 def getBranchType(){
     String gitBranch=env.GIT_BRANCH
@@ -214,4 +216,3 @@ def checkout(String rama){
 }
 
 
-return this;
