@@ -16,22 +16,21 @@ pipeline {
           stage('Pipeline'){
             steps{
               script{
-                try{
-                
+                               
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      gradle.call()
+                      //gradle.call()
+                      def ejecucionGradle = load '/vars/gradle.groovy'
+                      ejecucionGradle.call()
+                    
                       figlet 'pipeline:'+env.PIPELINE
                       
                   } else {
                       maven()
                   }
-                  figlet 'pipeline ok:'+env.PIPELINE
+                 
                 }
-                catch(Exception e){
-                  figlet 'pipeline nok :'+env.PIPELINE
                 
-                }
                 
               }
               
@@ -39,7 +38,7 @@ pipeline {
             }
           }
         }
-/*
+
         post {
           success {
             figlet 'pipeline:'+env.PIPELINE
@@ -51,6 +50,6 @@ pipeline {
             error "Ejecución fallida en stage ${env.STAGE}"
           }
         }
-        */
+        
   }
 }
