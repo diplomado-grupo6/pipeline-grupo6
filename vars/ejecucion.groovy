@@ -19,35 +19,31 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      //gradle.call()
-                      def ejecucionGradle = load '/vars/gradle.groovy'
-                      ejecucionGradle.call()
+                      gradle()
+                      //def ejecucionGradle = load '/vars/gradle.groovy'
+                      //ejecucionGradle.call()
                     
-                      figlet 'pipeline:'+env.PIPELINE
+                      figlet 'pipeline:'+PIPELINE
                       
                   } else {
                       maven()
                   }
-                 
-                
-                
-                
+                                 
               }
-              
-              
+                            
             }
           }
         }
 
         post {
           success {
-            figlet 'pipeline:'+env.PIPELINE
-            //slackSend color: 'good', message: "[Grupo6][${env.PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${env.STAGE}][Resultado: Ok]"
+            figlet 'pipeline:'+ PIPELINE
+            //slackSend color: 'good', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
           }
 
           failure {
-            //slackSend color: 'danger', message: "[Grupo6][${env.PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${env.STAGE}][Resultado: No Ok]"
-            error "Ejecución fallida en stage ${env.STAGE}"
+            //slackSend color: 'danger', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]"
+            error "Ejecución fallida en stage ${STAGE}"
           }
         }
         
