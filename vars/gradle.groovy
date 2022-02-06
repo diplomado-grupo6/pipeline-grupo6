@@ -1,5 +1,5 @@
 def call(){
-
+	
         if(isIcOrRelease()=='CI'){
         PIPELINE='CI'
         figlet PIPELINE
@@ -91,6 +91,8 @@ def call(){
             
         }
     }
+    RETURN [STAGE,PIPELINE]
+    
      
 }
 
