@@ -93,8 +93,7 @@ def call(){
             
         }
     }
-	figlet 'stage:'+STAGE
-    
+	    
     
      
 }
