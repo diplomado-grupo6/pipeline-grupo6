@@ -20,14 +20,14 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                    //figlet "a ${env.STAGE}"
-                     figlet "a ${STAGE}"
-                    figlet "a ${PIPELINE}"
+                    
+                     //figlet "a ${STAGE}"
+                    //figlet "a ${PIPELINE}"
                       gradle.call()
                       println "despues de gradle"
                     
-                      figlet "b ${STAGE}"
-                      figlet "b ${PIPELINE}"
+                      //figlet "b ${STAGE}"
+                      //figlet "b ${PIPELINE}"
                     
                       
                   } else {
@@ -42,16 +42,16 @@ pipeline {
 
         post {
           success {
-            figlet 'pipeline:'
+            
             //[${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]
-            //slackSend color: 'good', message: "[Grupo6][Rama: ${env.GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
+            slackSend color: 'good', message: "[Grupo6][${PIPELINE}][Rama: ${env.GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
           }
 
           failure {
             //[${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]
-            //slackSend color: 'danger', message: "[Grupo6][Rama: ${env.GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]"
-            //error "Ejecución fallida"
-            figlet 'error'
+            slackSend color: 'danger', message: "[Grupo6][${PIPELINE}][Rama: ${env.GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]"
+            error "Ejecución fallida"
+           
           }
         }
         
