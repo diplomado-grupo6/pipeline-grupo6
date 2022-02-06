@@ -19,8 +19,8 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      String pipe=''
-                      gradle(pipe)
+                      
+                      gradle()
                       //def ejecucionGradle = load '/vars/gradle.groovy'
                       //ejecucionGradle.call()
                     
@@ -51,3 +51,4 @@ pipeline {
         
   }
 }
+return this;
