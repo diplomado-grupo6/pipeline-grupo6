@@ -49,7 +49,7 @@ pipeline {
 
         post {
           success {
-            //figlet 'pipeline:'+ PIPELINE
+            figlet 'pipeline:'
             //[${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]
             //slackSend color: 'good', message: "[Grupo6][Rama: ${env.GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
           }
