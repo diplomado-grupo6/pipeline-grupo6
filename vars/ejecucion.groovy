@@ -24,7 +24,7 @@ pipeline {
                       //def ejecucionGradle = load '/vars/gradle.groovy'
                       //ejecucionGradle.call()
                     
-                    //figlet "pipeline:${PIPELINE}"
+                    println "pipeline:${PIPELINE}"
                      
                       
                   } else {
