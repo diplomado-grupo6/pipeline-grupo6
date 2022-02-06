@@ -1,4 +1,4 @@
-def call(){
+def call(String PIPELINE){
 
         if(isIcOrRelease()=='CI'){
         PIPELINE='CI'
