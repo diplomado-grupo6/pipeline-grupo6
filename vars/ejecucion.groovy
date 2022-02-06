@@ -19,7 +19,7 @@ pipeline {
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
                       gradle.call()
-                      figlet 'pipeline:'+PIPELINE
+                      
                   } else {
                       maven()
                   }
@@ -30,6 +30,7 @@ pipeline {
 
         post {
           success {
+            figlet 'pipeline:'+env.PIPELINE
             figlet 'pipeline:'+PIPELINE
             slackSend color: 'good', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
           }
