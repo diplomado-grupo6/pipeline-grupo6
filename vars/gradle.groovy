@@ -1,12 +1,12 @@
 def call(){
-	
+	STAGEMP=env.STAGE_NAME
         if(validaciones.isIcOrRelease()=='CI'){
         PIPELINE='CI'
 	
         figlet PIPELINE
         stage('compile-unitTest-jar') {
             STAGE=env.STAGE_NAME
-	    STAGEMP=env.STAGE_NAME
+	    
             figlet 'compile'
             figlet 'unitTest'
             figlet 'jar'
