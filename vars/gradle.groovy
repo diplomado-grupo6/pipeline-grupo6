@@ -91,7 +91,8 @@ def call(){
             
         }
     }
-    RETURN [STAGE,PIPELINE]
+	figlet 'stage:'+STAGE
+    
     
      
 }
