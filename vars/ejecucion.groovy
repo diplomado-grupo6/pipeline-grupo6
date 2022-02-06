@@ -14,6 +14,12 @@ pipeline {
 
         stages{
           stage('Pipeline'){
+            
+        environment {
+            STAGEMP = ''
+            PIPELINEMP=''
+        }
+            
             steps{
               script{
                                
@@ -23,11 +29,12 @@ pipeline {
                       gradle.call()
                       println "despues de gradle"
                       //println "despues de gradle:"+STAGE
-                      def variables = sh (
+                      /*def variables = sh (
                         script: 'env',
                         returnStdout: true
                       ).trim()           
-                      println variables
+                      println variables*/
+                      println "${STAGEMP}"
                      
                       
                   } else {
