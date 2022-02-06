@@ -20,11 +20,11 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      figlet STAGE
+                    figlet "a ${STAGE}"
                       gradle.call()
                       println "despues de gradle"
                     
-                      figlet STAGE
+                      figlet "b ${STAGE}"
                     
                       
                   } else {
