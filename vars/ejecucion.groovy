@@ -21,6 +21,8 @@ pipeline {
                   if (params.buildTool == "gradle") {
                       println "antes de gradle"
                       (stage, pipeline)=gradle.call()
+                       println "despues de gradle"
+                      println "despues de gradle:"+stage
                       STAGE=stage
                       PIPELINE=pipeline
                     
