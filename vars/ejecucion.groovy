@@ -22,9 +22,12 @@ pipeline {
                       println "antes de gradle"
                       gradle.call()
                       println "despues de gradle"
-                      println "despues de gradle:"+STAGE
-                                   
-                    
+                      //println "despues de gradle:"+STAGE
+                      def variables = sh (
+                        script: 'env',
+                        returnStdout: true
+                      ).trim()           
+                      println variables
                      
                       
                   } else {
@@ -53,4 +56,4 @@ pipeline {
         
   }
 }
-return this;
+return this
