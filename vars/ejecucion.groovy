@@ -34,7 +34,7 @@ pipeline {
                         returnStdout: true
                       ).trim()           
                       println variables*/
-                      println "${STAGEMP}"
+                      println "prueba mp ${STAGEMP}"
                      
                       
                   } else {
