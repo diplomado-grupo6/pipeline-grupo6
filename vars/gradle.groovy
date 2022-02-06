@@ -1,5 +1,5 @@
 def call(){
-	STAGEMP="${env.STAGE_NAME}"
+	
         if(validaciones.isIcOrRelease()=='CI'){
         PIPELINE='CI'
 	
