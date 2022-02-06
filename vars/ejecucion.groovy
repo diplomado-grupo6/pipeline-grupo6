@@ -19,11 +19,13 @@ pipeline {
                                
                 println 'Pipeline'
                   if (params.buildTool == "gradle") {
-                      gradle(PIPELINE)
+                      String pipe=''
+                      gradle(pipe)
                       //def ejecucionGradle = load '/vars/gradle.groovy'
                       //ejecucionGradle.call()
                     
-                      figlet 'pipeline:'+PIPELINE
+                      figlet 'pipeline:'+pipe
+                      PIPELINE=pipe
                       
                   } else {
                       maven()
