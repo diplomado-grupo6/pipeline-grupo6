@@ -5,7 +5,7 @@ pipeline {
 
         environment {
             STAGE = ''
-            PIPELINE=''
+            PIPELINE='CI'
         }
 
         parameters {
@@ -31,7 +31,6 @@ pipeline {
         post {
           success {
             figlet 'pipeline:'+env.PIPELINE
-            figlet 'pipeline:'+PIPELINE
             slackSend color: 'good', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
           }
 
