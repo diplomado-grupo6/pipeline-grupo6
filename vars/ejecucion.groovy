@@ -1,3 +1,4 @@
+def call(){
 pipeline {
   
         agent any
@@ -37,4 +38,5 @@ pipeline {
             error "Ejecución fallida en stage ${STAGE}"
           }
         }
+  }
 }
