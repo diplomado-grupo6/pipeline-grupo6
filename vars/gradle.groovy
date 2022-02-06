@@ -1,8 +1,8 @@
-def call(String PIPELINE){
+def call(String Pipeline){
 
         if(isIcOrRelease()=='CI'){
-        PIPELINE='CI'
-        figlet PIPELINE
+        Pipeline='CI'
+        figlet Pipeline
         stage('compile-unitTest-jar') {
             STAGE=env.STAGE_NAME
             figlet 'compile'
