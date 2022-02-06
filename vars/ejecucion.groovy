@@ -1,58 +1,40 @@
-def call(){
- 
-   
- pipeline {
-
+pipeline {
+  
         agent any
 
-        environment{
-         STAGE=''
-         
-       }
+        environment {
+            STAGE = ''
+            PIPELINE=''
+        }
 
         parameters {
-                choice (choices: ['gradle', 'maven'], description: 'Indicar herramienta de contrucción', name: 'buildTool')
-                string(name:'stage',defaultValue:'',description:'Write stages that you need execute or keep blank to execute all (example: build)')
+                choice(name: 'buildTool', choices: ['gradle', 'maven'], description: 'Indicar herramienta de construcción')
         }
 
         stages{
-                stage('Pipeline'){
-                        steps{
-                         script{
+          stage('Pipeline'){
+            steps{
+              script{
+                println 'Pipeline'
+                  if (params.buildTool == "gradle") {
+                      def ejecucion = load 'gradle.groovy'
+                      ejecucion.call()
+                  } else {
+                      maven()
+                  }
+              }
+            }
+          }
+        }
 
-                    try{
-                     figlet 'Pipeline'
-                                                            
-                     figlet params.buildTool
-                                         
-                     if(params.buildTool=='gradle'){
-                          gradle.call()
+        post {
+          success {
+            slackSend color: 'good', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: Ok]"
+          }
 
-                     }
-                     else{
-                      
-                          maven.call()
-                       
-
-                     }
-                     slackSend color: 'good', message: "[${env.USER}][${env.JOB_NAME}][${params.buildTool}] Ejecución exitosa"
-
-                    }
-                    catch(Exception e){
-                        slackSend color: 'danger', message: "[${env.USER}][${env.JOB_NAME}][${params.buildTool}] Ejecución fallida en stage [${STAGE}]"
-                                                error "Ejecución fallida en stage ${STAGE}"
-                    }
-                                }
-                        }
-
-                }
-
-    }
- 
+          failure {
+            slackSend color: 'danger', message: "[Grupo6][${PIPELINE}][Rama: ${GIT_BRANCH}][Stage: ${STAGE}][Resultado: No Ok]"
+            error "Ejecución fallida en stage ${STAGE}"
+          }
+        }
 }
-
-
- 
-}
-
-return this;
