@@ -2,12 +2,7 @@ def call(){
 pipeline {
   
         agent any
-
-        environment {
-            STAGE='-'
-            PIPELINE='-'
-        }
-
+       
         parameters {
                 choice(name: 'buildTool', choices: ['gradle', 'maven'], description: 'Indicar herramienta de construcción')
         }
@@ -23,11 +18,13 @@ pipeline {
                     
                      //figlet "a ${STAGE}"
                     //figlet "a ${PIPELINE}"
+                      env.STAGE=''
+                      env.PIPELINE=''
                       gradle.call()
                       println "despues de gradle"
                     
-                      figlet "b ${STAGE}"
-                      figlet "b ${PIPELINE}"
+                      figlet "b ${env.STAGE}"
+                      figlet "b ${env.PIPELINE}"
                     
                       
                   } else {
