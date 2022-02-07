@@ -4,8 +4,8 @@ pipeline {
         agent any
 
         environment {
-            STAGE=' '
-            PIPELINE=' '
+            STAGE='-'
+            PIPELINE='-'
         }
 
         parameters {
