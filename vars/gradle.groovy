@@ -45,7 +45,7 @@ def call(){
     else if(validaciones.getBranchType()=='release'){
 
         
-        PIPELINE='release'
+        env.PIPELINE='release'
         figlet 'CD'
         stage('gitDiff') {
             
