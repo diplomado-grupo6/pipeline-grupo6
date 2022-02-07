@@ -1,8 +1,8 @@
 def call(){
 	
         if(validaciones.isIcOrRelease()=='CI'){
-        PIPELINE='CI'
-	STAGE='FICTICIA'
+        env.PIPELINE='CI'
+	env.STAGE='FICTICIA'
 	
         figlet PIPELINE
         stage('compile-unitTest-jar') {
