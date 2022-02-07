@@ -79,13 +79,13 @@ def call(){
         stage('gitMergeMaster') {
             env.STAGE=env.STAGE_NAME
             figlet env.STAGE
-            validaciones.merge(env.GIT_BRANCH,'main')
+            validaciones.merge(env.GIT_BRANCH.split('/')[1],'main')
             
         }
         stage('gitMergeDevelop') {
             env.STAGE=env.STAGE_NAME
             figlet env.STAGE
-            validaciones.merge(env.GIT_BRANCH,'develop')
+            validaciones.merge(env.GIT_BRANCH.split('/')[1],'develop')
             
         }
         stage('gitTagMaster') {
