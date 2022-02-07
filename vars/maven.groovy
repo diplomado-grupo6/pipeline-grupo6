@@ -1,7 +1,7 @@
 def call(){
 
         if(isIcOrRelease()=='CI'){
-        PIPELINE='CI'
+        env.PIPELINE='CI'
         figlet 'CI'
         stage('compile') {
             STAGE=env.STAGE_NAME
@@ -11,22 +11,22 @@ def call(){
         }
         
         stage('unitTest') {
-            STAGE=env.STAGE_NAME
+            env.STAGE=env.STAGE_NAME
             figlet 'unitTest'
             sh 'chmod a+x mvnw'
             sh './mvnw clean test -e'
         }
         
         stage('jar') {
-            STAGE=env.STAGE_NAME
+            env.STAGE=env.STAGE_NAME
             figlet 'jar'
             sh 'chmod a+x mvnw'
             sh './mvnw clean package -e'
         }
         
         stage('sonar') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             scannerHome = tool 'sonar-scanner'
             withSonarQubeEnv('sonarqube-server') {
                 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-maven -Dsonar.java.binaries=build"
@@ -34,15 +34,15 @@ def call(){
         }
         
         stage('nexusUpload') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             nexusPublisher nexusInstanceId: 'nexus_test', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'build/DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'ejemplo-maven-feature-sonar', groupId: 'com.devopsusach2020', packaging: 'jar', version: '0.0.1']]]
         }
         if(getBranchType()=='develop'){
             stage('gitCreateRelease') {
                 //solo rama dev
-                STAGE=env.STAGE_NAME
-                figlet STAGE
+                env.STAGE=env.STAGE_NAME
+                figlet env.STAGE
                 String rama="release-v1-0-2"
                 createBranch('develop',rama)
 
@@ -52,12 +52,12 @@ def call(){
     else if(getBranchType()=='release'){
 
         
-        PIPELINE='release'
+        env.PIPELINE='release'
         figlet 'CD'
         stage('gitDiff') {
             
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             // opcional 
             getDiff(env.GIT_BRANCH,'main')
             sh 'pwd'
@@ -65,39 +65,39 @@ def call(){
         }
         
         stage('nexusDownload') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             sh 'curl -X GET -u admin:L1m1t2rm., http://localhost:8082/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
         }
         
         stage('run') {
             sh 'ls'
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             sh 'nohup bash mvnw spring-boot:run &'
             sh 'ps -fea|grep mvnw'
             sleep(20)
         }
         stage('test') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             sh """curl -X GET 'http://localhost:8081/rest/mscovid/test?msg=testing'"""
         }
         stage('gitMergeMaster') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             merge(env.GIT_BRANCH,'main')
             
         }
         stage('gitMergeDevelop') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             merge(env.GIT_BRANCH,'develop')
             
         }
         stage('gitTagMaster') {
-            STAGE=env.STAGE_NAME
-            figlet STAGE
+            env.STAGE=env.STAGE_NAME
+            figlet env.STAGE
             tag(env.GIT_BRANCH,'main')
             
         }
