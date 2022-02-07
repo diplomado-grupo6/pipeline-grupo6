@@ -13,7 +13,7 @@ pipeline {
             steps{
               script{
                                
-                figlet "Parametro desde webhook: ${env.stagesSelected}"
+                figlet "Stages: ${env.stagesSelected}"
                 if (params.buildTool == "gradle") {
                                           
                       env.STAGE=''
