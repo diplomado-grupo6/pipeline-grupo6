@@ -13,7 +13,7 @@ pipeline {
             steps{
               script{
                                
-                figlet "Stages: ${env.stagesSelected}"
+                println  "Stages: ${env.stagesSelected}"
                 if (params.buildTool == "gradle") {
                                           
                       env.STAGE=''
