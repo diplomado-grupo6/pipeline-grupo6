@@ -26,8 +26,8 @@ pipeline {
                       gradle.call()
                       println "despues de gradle"
                     
-                      //figlet "b ${STAGE}"
-                      //figlet "b ${PIPELINE}"
+                      figlet "b ${STAGE}"
+                      figlet "b ${PIPELINE}"
                     
                       
                   } else {
