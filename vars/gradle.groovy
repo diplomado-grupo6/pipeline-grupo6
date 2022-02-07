@@ -52,7 +52,7 @@ def call(){
             env.STAGE=env.STAGE_NAME
             figlet STAGE
             // opcional 
-            validaciones.getDiff(env.GIT_BRANCH,'main')
+            validaciones.getDiff(env.GIT_BRANCH.split('/')[1],'main')
             sh 'pwd'
             
         }
