@@ -65,9 +65,7 @@ def merge(String ramaOrigen, String ramaDestino){
 
 	sh """
 	    pwd
-	    //ls -ltr
 	    rm -rf *
-	    //ls -ltr
 	    git clone https://github.com/diplomado-grupo6/ms-iclab.git
 	    git branch
 	   	git checkout ${ramaOrigen}
